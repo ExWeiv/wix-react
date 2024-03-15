@@ -1,0 +1,54 @@
+{
+  "name": "@exweiv/wix-react",
+  "version": "0.1.0",
+  "description": "Integrate React.js with your Wix powered website.",
+  "main": "index.js",
+  "scripts": {
+    "compileJSX": "npx babel components --out-dir ../src/public/components --extensions .jsx",
+    "compileCSS": "node ./index.js",
+    "build": "npm run compileJSX && npm run compileCSS"
+  },
+  "keywords": [
+    "wix",
+    "exweiv",
+    "react",
+    "velo",
+    "wix-react"
+  ],
+  "author": {
+    "name": "ExWeiv Apps Team",
+    "email": "info@apps.exweiv.com"
+  },
+  "license": "Apache-2.0",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org"
+  },
+  "repository": {
+    "url": "git@github.com:ExWeiv/wix-react.git",
+    "type": "git"
+  },
+  "bugs": {
+    "url": "https://github.com/ExWeiv/wix-react/issues",
+    "email": "info@apps.exweiv.com"
+  },
+  "contributors": [
+    {
+      "name": "Enes Bekar",
+      "url": "https://github.com/l0eix"
+    }
+  ],
+  "engines": {
+    "node": ">=18.17.1"
+  },
+  "dependencies": {
+    "fs-extra": "^11.2.0",
+    "react": "^18.2.0"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.23.9",
+    "@babel/core": "^7.24.0",
+    "@babel/preset-env": "^7.24.0",
+    "@babel/preset-react": "^7.23.3"
+  }
+}
