@@ -1,12 +1,10 @@
 {
   "name": "@exweiv/wix-react",
-  "version": "0.1.0",
+  "version": "0.0.9",
   "description": "Integrate React.js with your Wix powered website.",
   "main": "index.js",
   "scripts": {
-    "compileJSX": "npx babel components --out-dir ../src/public/components --extensions .jsx",
-    "compileCSS": "node ./index.js",
-    "build": "npm run compileJSX && npm run compileCSS"
+    "build": "node ./src/build.js"
   },
   "keywords": [
     "wix",
@@ -42,7 +40,10 @@
     "node": ">=18.17.1"
   },
   "dependencies": {
+    "chalk": "^5.3.0",
+    "child_process": "^1.0.2",
     "fs-extra": "^11.2.0",
+    "ora": "^8.0.1",
     "react": "^18.2.0"
   },
   "devDependencies": {
@@ -50,5 +51,6 @@
     "@babel/core": "^7.24.0",
     "@babel/preset-env": "^7.24.0",
     "@babel/preset-react": "^7.23.3"
-  }
+  },
+  "type": "module"
 }
