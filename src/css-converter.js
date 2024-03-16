@@ -3,8 +3,6 @@ import path from 'path';
 import chalk from 'chalk';
 import ora from 'ora';
 
-const spinner = ora(`CSS Compiler Running...\n`).start();
-
 // CSS folder path in React folder.
 const cssFolderPath = './css';
 
@@ -12,7 +10,7 @@ const cssFolderPath = './css';
 const wixCssFolderName = 'css';
 
 // CSS Compiler
-async function generateCSSJS(cssContent, cssFileName) {
+async function generateCSSJS(cssContent, cssFileName, spinner) {
     try {
         spinner.text(`Compiling: ${cssFileName}.css`);
         await fs.writeFile(`../src/public/${wixCssFolderName}/files/${cssFileName.toLowerCase()}css.js`, `const ${cssFileName} = ${JSON.stringify('<style>' + cssContent + '</style>')};\nexport default ${cssFileName};\n`, 'utf-8');
@@ -22,6 +20,7 @@ async function generateCSSJS(cssContent, cssFileName) {
     }
 }
 async function compileCssFiles() {
+    const spinner = ora(`CSS Compiler Running...\n`).start();
     let cssFilePath = process.argv[2];
     if (!cssFilePath) {
         try {
@@ -31,7 +30,7 @@ async function compileCssFiles() {
                     cssFilePath = path.join(cssFolderPath, file);
                     const cssContent = await fs.readFileSync(cssFilePath, 'utf-8');
                     const cssFileName = path.basename(cssFilePath, path.extname(cssFilePath));
-                    await generateCSSJS(cssContent, cssFileName);
+                    await generateCSSJS(cssContent, cssFileName, spinner);
                 }
             }
             spinner.stop();
@@ -45,7 +44,7 @@ async function compileCssFiles() {
     } else {
         const cssContent = await fs.readFileSync(cssFilePath, 'utf-8');
         const cssFileName = path.basename(cssFilePath, path.extname(cssFilePath));
-        await generateCSSJS(cssContent, cssFileName);
+        await generateCSSJS(cssContent, cssFileName, spinner);
         spinner.stop();
         console.log(chalk.blueBright(`'${cssFileName}' compiled and saved to src/public/${wixCssFolderName}/files/${cssFileName}.js`));
         process.exit(0);
