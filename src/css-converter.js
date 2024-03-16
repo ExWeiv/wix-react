@@ -3,6 +3,8 @@ import path from 'path';
 import chalk from 'chalk';
 import ora from 'ora';
 
+const spinner = ora(`CSS Compiler Running...\n`).start();
+
 // CSS folder path in React folder.
 const cssFolderPath = './css';
 
@@ -10,7 +12,6 @@ const cssFolderPath = './css';
 const wixCssFolderName = 'css';
 
 // CSS Compiler
-const spinner = ora('CSS Compiler Running...\n').start();
 async function generateCSSJS(cssContent, cssFileName) {
     try {
         spinner.text(`Compiling: ${cssFileName}.css`);

@@ -1,4 +1,4 @@
-import { spawn } from 'child_process';
+import { exec } from 'child_process';
 import chalk from 'chalk';
 import ora from 'ora';
 
@@ -11,29 +11,25 @@ const wixReactComponentsFolderName = 'component';
 // Path
 const outputDir = `../src/public/${wixReactComponentsFolderName}`;
 
-// Files Extension
-const extensions = '.jsx';
+// NPX command
+const command = `npx babel ${componentsPath} --out-dir ${outputDir} --extensions .jsx`
 
 async function compileReactComponents() {
-    const babelProcess = spawn('npx', [
-        'babel',
-        componentsPath,
-        '--out-dir',
-        outputDir,
-        '--extensions',
-        extensions,
-    ])
+    exec(command, (err, stdout, stderr) => {
+        if (err) {
+            console.log(chalk.red(`Babel Error: ${err}`));
+            process.exit(1);
+        }
 
-    babelProcess.stderr.on('data', (data) => {
-        console.log(chalk.red(`Babel Error: ${data.toString()}`));
-        process.exit(1);
-    });
+        if (stderr) {
+            console.log(chalk.red(`Babel Error: ${stderr}`));
+            process.exit(1);
+        }
 
-    babelProcess.on('close', (code) => {
         spinner.stop();
         console.log(chalk.cyan(`All React components compiled and saved into src/public/${wixReactComponentsFolderName}`));
         process.exit(0);
-    });
+    })
 }
 
 export default compileReactComponents;
