@@ -70,7 +70,7 @@ Here is an example custom element component that's using example components crea
 import React from "react";
 import ReactDOM from "react-dom";
 import Counter from "../components/Counter";
-import styles from "../css/countercss";
+import styles from "../css/files/countercss";
 
 // Create a root div to mount React component
 const mountDiv = document.createElement("div");
