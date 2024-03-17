@@ -1,9 +1,6 @@
 import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
-import ora from 'ora';
-
-const spinner = ora(`CSS Compiler Running...\n`).start();
 
 // CSS folder path in React folder.
 const cssFolderPath = './css';
@@ -14,11 +11,9 @@ const wixCssFolderName = 'css';
 // CSS Compiler
 async function generateCSSJS(cssContent, cssFileName) {
     try {
-        // spinner.text(`Compiling: ${cssFileName}.css`);
         await fs.writeFile(`../src/public/${wixCssFolderName}/files/${cssFileName.toLowerCase()}css.js`, `const ${cssFileName} = ${JSON.stringify('<style>' + cssContent + '</style>')};\nexport default ${cssFileName};\n`, 'utf-8');
     } catch (err) {
         console.log(chalk.red(`Error (CSS Compiler): ${err}`));
-        process.exit(1);
     }
 }
 async function compileCssFiles() {
@@ -35,20 +30,14 @@ async function compileCssFiles() {
                 }
             }
             console.log(chalk.blueBright(`All CSS compiled and saved into src/public/${wixCssFolderName}/files`));
-            // spinner.stop();
-            process.exit(0);
         } catch (err) {
             console.log(chalk.red(`Error (CSS Compiler): ${err}`));
-            // spinner.stop();
-            process.exit(1);
         }
     } else {
         const cssContent = await fs.readFileSync(cssFilePath, 'utf-8');
         const cssFileName = path.basename(cssFilePath, path.extname(cssFilePath));
         await generateCSSJS(cssContent, cssFileName);
         console.log(chalk.blueBright(`'${cssFileName}' compiled and saved to src/public/${wixCssFolderName}/files/${cssFileName}.js`));
-        // spinner.stop();
-        process.exit(0);
     }
 }
 
