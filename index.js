@@ -8,17 +8,12 @@ const spinner = ora({ text: 'Setting up ExWeiv Wix-React compilers and folders w
 
 try {
     await execa('mkdir', ['React']);
-    await execa('cd', ['React']);
-    await execa('git', ['clone', 'git@github.com:ExWeiv/wix-react.git', '.']);
-    await execa('npm', ['install'])
-    await execa('cd', ['..']);
-    await execa('cd', ['src/public']);
-    await execa('mkdir', ['components'])
-    await execa('mkdir', ['css'])
-    await execa('cd', ['css'])
-    await execa('mkdir', ['files'])
+    await execa('git', ['clone', 'git@github.com:ExWeiv/wix-react.git', './React']);
+    await execa('npm', ['install'], { cwd: './React' })
+    await execa('mkdir', ['src/public/components'])
+    await execa('mkdir', ['src/public/css'])
+    await execa('mkdir', ['src/public/css/files'])
+    spinner.succeed('ExWeiv Wix-React is ready!');
 } catch (err) {
     console.error(chalk.red(`Error while setting up ExWeiv Wix-React: ${err}`));
 }
-
-spinner.succeed('ExWeiv Wix-React is ready!');
