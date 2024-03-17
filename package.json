@@ -6,7 +6,7 @@
   "scripts": {
     "setup": "node index.js",
     "build": "node ./src/build.js",
-    "rm-git": "node ./src/remove-git.js"
+    "rm-git": "rd .git"
   },
   "keywords": [
     "wix",
