@@ -52,6 +52,12 @@ wix install react-dom
 
 > You can use `cd ..` for going back between folders.
 
+#### Optionally you can also install another package to send objects to your custom elements:
+
+```cli
+wix install @exweiv/wix-ce-helpers
+```
+
 You will see new files inside of your `public` folder. And now next step is creating custom elements codes. Each time you want to create a new custom element you need to manually create a new `.js` file inside of your `src/public/custom-elements` (custom-elements) folder. Wix will be pulling any custom-element files from this dir.
 
 Here is an example custom element component that's using example components created from this repo. You can copy this code and paste it into a JS file and then you will be good to go for adding your custom element into desired page.
@@ -111,6 +117,20 @@ class CounterReactExample extends HTMLElement {
 }
 
 customElements.define("react-counter-example", CounterReactExample);
+```
+
+For the page code copy paste this:
+
+```js
+import { sendJSON } from "@exweiv/wix-ce-helpers";
+
+$w.onReady(() => {
+  sendJSON("props", { clickCount: 100 }, "#customElement");
+
+  $w("#customElement").on("onButtonClick", ({ detail }) => {
+    sendJSON("props", { clickCount: detail.count * 2 }, "#customElement");
+  });
+});
 ```
 
 When you use external components and libraries from NPM you should install these into your Wix site. And if you want auto-complete features enabled while working with these external components you can also install these inside React folder where your components lives.
