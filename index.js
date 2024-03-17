@@ -13,6 +13,8 @@ const folders = [
     '../src/public/css/files'
 ]
 
+let totalSkip = 0;
+
 try {
     for (const folder of folders) {
         fs.stat(folder, async (err, stats) => {
@@ -26,9 +28,15 @@ try {
                 if (stats.isDirectory()) {
                     const printT = folder.slice(3);
                     console.log(chalk.hex('#fcba03')(`${printT} folder already exists so skipping this`))
+                    totalSkip++;
                 }
             }
         })
+    }
+
+    if (totalSkip => 3) {
+        spinner.clear();
+        console.log(chalk.hex('#fcba03')('All folders are already exist so nothing was created!'));
     }
 
     spinner.succeed('ExWeiv Wix-React is ready!');
