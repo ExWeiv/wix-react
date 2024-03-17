@@ -34,12 +34,12 @@ try {
         })
     }
 
-    if (totalSkip => 3) {
+    if (totalSkip >= 3) {
         spinner.clear();
         console.log(chalk.hex('#fcba03')('All folders are already exist so nothing was created!'));
+    } else {
+        spinner.succeed('ExWeiv Wix-React is ready!');
     }
-
-    spinner.succeed('ExWeiv Wix-React is ready!');
 } catch (err) {
     console.error(chalk.red(`Error while setting up ExWeiv Wix-React: ${err}`));
 }
