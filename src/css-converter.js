@@ -32,7 +32,7 @@ async function compileCssFiles() {
                     await generateCSSJS(cssContent, cssFileName);
                 }
             }
-            await fs.writeFile(`../src/public/${wixCssFolderName}/globalcss.js`, `const globalcss = ${'<style>' + globalCSSContent + '</style>'};\nexport default globalcss;\n`, 'utf-8');
+            await fs.writeFile(`../src/public/${wixCssFolderName}/globalcss.js`, `const globalcss = ${JSON.stringify('<style>' + globalCSSContent + '</style>')};\nexport default globalcss;\n`, 'utf-8');
             console.log(chalk.blueBright(`All CSS compiled and saved into src/public/${wixCssFolderName}/files`));
         } catch (err) {
             console.log(chalk.red(`Error (CSS Compiler): ${err}`));
