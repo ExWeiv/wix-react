@@ -8,9 +8,12 @@ const cssFolderPath = './css';
 // Wix CSS folder name (only name path is ready)
 const wixCssFolderName = 'css';
 
+let globalCSSContent = '';
+
 // CSS Compiler
 async function generateCSSJS(cssContent, cssFileName) {
     try {
+        globalCSSContent = globalCSSContent + JSON.stringify('<style>' + cssContent + '</style>');
         await fs.writeFile(`../src/public/${wixCssFolderName}/files/${cssFileName.toLowerCase()}css.js`, `const ${cssFileName} = ${JSON.stringify('<style>' + cssContent + '</style>')};\nexport default ${cssFileName};\n`, 'utf-8');
     } catch (err) {
         console.log(chalk.red(`Error (CSS Compiler): ${err}`));
@@ -29,6 +32,7 @@ async function compileCssFiles() {
                     await generateCSSJS(cssContent, cssFileName);
                 }
             }
+            await fs.writeFile(`../src/public/${wixCssFolderName}/globalcss.js`, `const globalcss = ${globalCSSContent};\nexport default globalcss;\n`, 'utf-8');
             console.log(chalk.blueBright(`All CSS compiled and saved into src/public/${wixCssFolderName}/files`));
         } catch (err) {
             console.log(chalk.red(`Error (CSS Compiler): ${err}`));
