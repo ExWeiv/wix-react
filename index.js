@@ -15,13 +15,19 @@ const folders = [
 
 try {
     for (const folder of folders) {
-        fs.access(folder, fs.constants.F_OK, async (err) => {
+        fs.stat(folder, async (err, stats) => {
             if (err) {
-                const printT = folder.slice(3);
-                console.log(chalk.hex('#fcba03')(`${printT} folder already exists so skipping this`))
+                if (err.code === 'ENOENT') {
+                    await execa('mkdir', [folder])
+                } else {
+                    console.error(chalk.red(`Error: ${err}`));
+                }
+            } else {
+                if (stats.isDirectory()) {
+                    const printT = folder.slice(3);
+                    console.log(chalk.hex('#fcba03')(`${printT} folder already exists so skipping this`))
+                }
             }
-
-            await execa('mkdir', [folder])
         })
     }
 
