@@ -13,7 +13,7 @@ let globalCSSContent = '';
 // CSS Compiler
 async function generateCSSJS(cssContent, cssFileName) {
     try {
-        globalCSSContent = globalCSSContent + JSON.stringify(cssContent);
+        globalCSSContent = globalCSSContent + cssContent;
         await fs.writeFile(`../src/public/${wixCssFolderName}/files/${cssFileName.toLowerCase()}css.js`, `const ${cssFileName} = ${JSON.stringify('<style>' + cssContent + '</style>')};\nexport default ${cssFileName};\n`, 'utf-8');
     } catch (err) {
         console.log(chalk.red(`Error (CSS Compiler): ${err}`));
