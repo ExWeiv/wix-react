@@ -46,6 +46,10 @@ Here is an example custom element component that's using example components crea
 // Custom Element Example
 ```
 
+When you use external components and libraries from NPM you should install these into your Wix site. And if you want auto-complete features enabled while working with these external components you can also install these inside React folder where your components lives.
+
+> Don't forget when installing for Wix use `wix install < package name >` when installing inside React folder (first navigate to that folder using `cd React`) use `npm install < package name >`. (You can navigate back using `cd ..`)
+
 ---
 
 Powered by ExWeiv Apps <br>
