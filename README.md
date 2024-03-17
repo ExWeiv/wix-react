@@ -70,7 +70,7 @@ Here is an example custom element component that's using example components crea
 import React from "react";
 import ReactDOM from "react-dom";
 import Counter from "../components/Counter";
-import styles from "../css/files/countercss";
+import styles from "../css/globalcss";
 
 // Create a root div to mount React component
 const mountDiv = document.createElement("div");
@@ -86,8 +86,10 @@ class CounterReactExample extends HTMLElement {
     super();
     this.attachShadow({ mode: "open" });
 
-    // Set HTML (CSS with style tag) in custom element
-    this.shadowRoot.innerHTML = styles;
+    // Set HTML (CSS with style tag) in custom element and import fonts using link tag
+    this.shadowRoot.innerHTML = `<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">\n${styles}`;
 
     // Add div into custom element
     this.shadowRoot.appendChild(mountDiv);
