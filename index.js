@@ -14,9 +14,9 @@ const folders = [
     '../src/public/custom-elements'
 ]
 
-let totalSkip = 0;
-
 try {
+    let totalSkip = 0;
+
     for (const folder of folders) {
         fs.stat(folder, async (err, stats) => {
             if (err) {
@@ -29,7 +29,7 @@ try {
                 if (stats.isDirectory()) {
                     const printT = folder.slice(3);
                     console.log(chalk.hex('#fcba03')(`${printT} folder already exists so skipping this`))
-                    totalSkip = totalSkip + 1;
+                    totalSkip++;
                 }
             }
         })
