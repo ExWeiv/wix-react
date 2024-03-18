@@ -18,7 +18,7 @@ const clearFolders = [...folders];
 
 try {
     for (const folder of folders) {
-        fs.stat(folder, async (err, stats) => {
+        await fs.stat(folder, async (err, stats) => {
             if (err) {
                 if (err.code === 'ENOENT') {
                     await execa('mkdir', [folder])
@@ -26,7 +26,7 @@ try {
                     console.error(chalk.red(`Error: ${err}`));
                 }
             } else {
-                if (stats.isDirectory()) {
+                if (await stats.isDirectory()) {
                     clearFolders.pop();
                     const printT = folder.slice(3);
                     console.log(chalk.hex('#fcba03')(`${printT} folder already exists so skipping this`))
