@@ -6,9 +6,6 @@ import ora from 'ora';
 import fs from 'fs';
 
 const spinner = ora({ text: 'Setting up ExWeiv Wix-React compilers and folders with pre-built examples...', color: 'magenta' }).start();
-const totalSkip = {
-    number: 0
-}
 
 const folders = [
     '../src/public/components',
@@ -16,6 +13,8 @@ const folders = [
     '../src/public/css/files',
     '../src/public/custom-elements'
 ]
+
+const clearFolders = [...folders];
 
 try {
     for (const folder of folders) {
@@ -28,7 +27,7 @@ try {
                 }
             } else {
                 if (stats.isDirectory()) {
-                    totalSkip.number++;
+                    clearFolders.pop();
                     const printT = folder.slice(3);
                     console.log(chalk.hex('#fcba03')(`${printT} folder already exists so skipping this`))
                 }
@@ -36,9 +35,9 @@ try {
         })
     }
 
-    console.log("totalSkip", totalSkip.number)
+    console.log("totalSkip", clearFolders)
 
-    if (totalSkip.number >= 4) {
+    if (clearFolders.length === 0) {
         spinner.clear();
         console.log(chalk.hex('#fcba03')('All folders are already exist so nothing was created!'));
     } else {
