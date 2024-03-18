@@ -52,7 +52,7 @@ wix install react-dom
 
 > You can use `cd ..` for going back between folders.
 
-#### Optionally you can also install another package to send objects to your custom elements:
+#### Optionally you can also install another package to send objects to your custom elements and setup custom element for React faster:
 
 ```cli
 wix install @exweiv/wix-ce-helpers
