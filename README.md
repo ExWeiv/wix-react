@@ -67,6 +67,8 @@ Here is an example custom element component that's using example components crea
 > After you add the custom element in the editor don't forget to set the tag name of custom element if it's set incorrect it won't work!
 
 ```js
+/// <reference lib="dom" />
+
 // Custom Element Example
 
 import React from "react";
@@ -87,6 +89,7 @@ class CounterReactExample extends HTMLElement {
     constructor() {
         super();
         setupForReact(fonts, [styles], this);
+        this.render(this.getAttribute("props"));
     }
 
     // Attributes keys that's listened for changes
@@ -101,11 +104,15 @@ class CounterReactExample extends HTMLElement {
      */
     attributeChangedCallback(name, oldValue, newValue) {
         if (name === "props") {
-            // Create another HTML element to mount into div element + pass props as JS object
-            const app = React.createElement(Counter, { ...JSON.parse(newValue), customElement: this });
-            // Mount created app to div and render (after first mount it will only render changed elements)
-            ReactDOM.render(app, this.rootDiv);
+            this.render(newValue);
         }
+    }
+
+    render(props) {
+        // Create another HTML element to mount into div element + pass props as JS object
+        const app = React.createElement(Counter, { ...JSON.parse(props), customElement: this });
+        // Mount created app to div and render (after first mount it will only render changed elements)
+        ReactDOM.render(app, this.rootDiv);
     }
 }
 
