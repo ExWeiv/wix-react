@@ -16,7 +16,11 @@ const folders = [
 
 async function createFolderIfNotExists(folder) {
     try {
-        await fs.promises.stat(folder);
+        const res = await fs.promises.stat(folder);
+        if (res.isDirectory()) {
+            console.log(chalk.hex('#fcba03')(`${folder.slice(3)} folder already exists so skipping this`));
+            return true;
+        }
     } catch (err) {
         if (err.code === 'ENOENT') {
             await execa('mkdir', [folder]);
@@ -27,20 +31,20 @@ async function createFolderIfNotExists(folder) {
 }
 
 (async () => {
-    const clearFolders = [];
+    const clearFolders = [...folders];
 
     for (const folder of folders) {
         try {
-            await createFolderIfNotExists(folder);
-            clearFolders.push(folder);
+            const exist = await createFolderIfNotExists(folder);
+            exist ? clearFolders.pop() : () => { };
         } catch (err) {
             console.error(chalk.red(`Error while setting up ExWeiv Wix-React: ${err}`));
         }
     }
 
-    if (clearFolders.length === folders.length) {
+    if (clearFolders.length === 0) {
         spinner.stop();
-        console.log(chalk.hex('#fcba03')('All folders already exist, so nothing was created!'));
+        console.log(chalk.hex('#fcba03')('\nAll folders already exist, so nothing was created!'));
     } else {
         spinner.succeed('ExWeiv Wix-React is ready!');
     }
