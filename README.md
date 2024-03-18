@@ -133,6 +133,37 @@ $w.onReady(() => {
 });
 ```
 
+WebGL Example:
+
+```js
+/// <reference lib="dom" />
+
+import React from "react";
+import ReactDOM from "react-dom";
+import WebGL from "../components/WebGLExample";
+import styles from "../css/files/webglexamplecss";
+import { setupForReact } from '@exweiv/wix-ce-helpers';
+
+const fonts = [`<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">`];
+
+class WebGLExample extends HTMLElement {
+    rootDiv = document.createElement("div");
+
+    constructor() {
+        super();
+        setupForReact(fonts, [styles], this);
+        this.render();
+    }
+
+    render() {
+        const app = React.createElement(WebGL, { customElement: this });
+        ReactDOM.render(app, this.rootDiv);
+    }
+}
+
+customElements.define("react-webgl-example", WebGLExample);
+```
+
 When you use external components and libraries from NPM you should install these into your Wix site. And if you want auto-complete features enabled while working with these external components you can also install these inside React folder where your components lives.
 
 > Don't forget when installing for Wix use `wix install < package name >` when installing inside React folder (first navigate to that folder using `cd React`) use `npm install < package name >`.
