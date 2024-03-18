@@ -15,7 +15,7 @@ const folders = [
 ]
 
 try {
-    let totalSkip = 0;
+    process.env["TOTALSKIP"] = 0;
 
     for (const folder of folders) {
         fs.stat(folder, async (err, stats) => {
@@ -27,7 +27,7 @@ try {
                 }
             } else {
                 if (stats.isDirectory()) {
-                    totalSkip++;
+                    process.env["TOTALSKIP"]++;
                     const printT = folder.slice(3);
                     console.log(chalk.hex('#fcba03')(`${printT} folder already exists so skipping this`))
                 }
@@ -35,9 +35,9 @@ try {
         })
     }
 
-    console.log("totalSkip", totalSkip)
+    console.log("totalSkip", process.env["TOTALSKIP"])
 
-    if (totalSkip >= 4) {
+    if (process.env["TOTALSKIP"] >= 4) {
         spinner.clear();
         console.log(chalk.hex('#fcba03')('All folders are already exist so nothing was created!'));
     } else {
