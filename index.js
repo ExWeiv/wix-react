@@ -35,6 +35,8 @@ try {
         })
     }
 
+    console.log("totalSkip", totalSkip)
+
     if (totalSkip >= 4) {
         spinner.clear();
         console.log(chalk.hex('#fcba03')('All folders are already exist so nothing was created!'));
