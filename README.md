@@ -73,51 +73,40 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Counter from "../components/Counter";
 import styles from "../css/globalcss";
+import { setupForReact } from '@exweiv/wix-ce-helpers';
 
-// Create a root div to mount React component
-const mountDiv = document.createElement("div");
-
-// Making possible to style root div
-mountDiv.id = "root-div";
-
-// We need to save customElement into a variable to pass it
-let customElement;
+const fonts = [
+    `<link rel="preconnect" href="https://fonts.googleapis.com">`,
+    `<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`,
+    `<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">`
+]
 
 class CounterReactExample extends HTMLElement {
-  constructor() {
-    super();
-    this.attachShadow({ mode: "open" });
+    rootDiv = document.createElement("div");
 
-    // Set HTML (CSS with style tag) in custom element and import fonts using link tag
-    this.shadowRoot.innerHTML = `<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">\n${styles}`;
-
-    // Add div into custom element
-    this.shadowRoot.appendChild(mountDiv);
-
-    // Save custom element to pass it to React
-    customElement = this;
-  }
-
-  // Attributes keys that's listened for changes
-  static get observedAttributes() {
-    return ["props"];
-  }
-
-  /**
-   * @param {string} name Name of attribute (key)
-   * @param {String} oldValue Old value of attribute
-   * @param {String} newValue New value of attribute
-   */
-  attributeChangedCallback(name, oldValue, newValue) {
-    if (name === "props") {
-      // Create another HTML element to mount into div element + pass props as JS object
-      const app = React.createElement(Counter, { ...JSON.parse(newValue), customElement });
-      // Mount created app to div and render (after first mount it will only render changed elements)
-      ReactDOM.render(app, mountDiv);
+    constructor() {
+        super();
+        setupForReact(fonts, [styles], this);
     }
-  }
+
+    // Attributes keys that's listened for changes
+    static get observedAttributes() {
+        return ["props"];
+    }
+
+    /**
+     * @param {string} name Name of attribute (key)
+     * @param {String} oldValue Old value of attribute
+     * @param {String} newValue New value of attribute
+     */
+    attributeChangedCallback(name, oldValue, newValue) {
+        if (name === "props") {
+            // Create another HTML element to mount into div element + pass props as JS object
+            const app = React.createElement(Counter, { ...JSON.parse(newValue), customElement: this });
+            // Mount created app to div and render (after first mount it will only render changed elements)
+            ReactDOM.render(app, this.rootDiv);
+        }
+    }
 }
 
 customElements.define("react-counter-example", CounterReactExample);
