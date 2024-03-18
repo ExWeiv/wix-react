@@ -27,9 +27,9 @@ try {
                 }
             } else {
                 if (stats.isDirectory()) {
+                    totalSkip++;
                     const printT = folder.slice(3);
                     console.log(chalk.hex('#fcba03')(`${printT} folder already exists so skipping this`))
-                    totalSkip++;
                 }
             }
         })
