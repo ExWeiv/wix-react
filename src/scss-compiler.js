@@ -5,11 +5,11 @@ import chalk from 'chalk';
 const exportedStyleType = ['expanded', 'compressed', 'nested'];
 
 async function compileSCSSFiles() {
-    const args = ['sass', '--style', exportedStyleType[1], '--no-source-map', 'SCSS:CSS'];
-
-    await execa('npx', args);
-
     try {
+        const args = ['sass', '--style', exportedStyleType[1], '--no-source-map', 'SCSS:CSS'];
+
+        await execa('npx', args);
+
         console.log(chalk.cyan(`All SCSS files compiled and saved into CSS folder`));
     } catch (err) {
         console.log(chalk.red(`SCSS Error: ${err}`));
