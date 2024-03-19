@@ -24,7 +24,7 @@ async function compileCssFiles() {
         const files = await fs.readdir(cssFolderPath);
         for (const file of files) {
             if (file.endsWith('.css')) {
-                cssFilePath = path.join(cssFolderPath, file);
+                const cssFilePath = path.join(cssFolderPath, file);
                 const cssContent = await fs.readFileSync(cssFilePath, 'utf-8');
                 const cssFileName = path.basename(cssFilePath, path.extname(cssFilePath));
                 await generateCSSJS(cssContent, cssFileName);
