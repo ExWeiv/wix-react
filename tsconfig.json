@@ -1,0 +1,23 @@
+{
+    "compilerOptions": {
+        "target": "ES2020",
+        "module": "CommonJS",
+        "jsx": "react",
+        "outDir": "../src/public/components",
+        "lib": [
+            "ES2020",
+            "DOM"
+        ],
+        "types": [
+            "react"
+        ],
+        "removeComments": true,
+        "strict": true,
+        "noUnusedLocals": true,
+        "noUnusedParameters": true,
+        "noImplicitReturns": true
+    },
+    "include": [
+        "Components/**/*"
+    ]
+}

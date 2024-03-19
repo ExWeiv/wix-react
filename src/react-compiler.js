@@ -1,22 +1,16 @@
 import { execa } from 'execa';
 import chalk from 'chalk';
-
-// Folder Names
-const componentsPath = 'components';
-const wixReactComponentsFolderName = 'components';
-
-// Path
-const outputDir = `../src/public/${wixReactComponentsFolderName}`;
+import ts from '../tsconfig.json' with { type: "json" };
 
 async function compileReactComponents() {
-    const args = ['npx', 'babel', `${componentsPath}`, '--out-dir', `${outputDir}`, '--extensions', '.jsx'];
+    const args = ['tsc'];
 
     await execa('npx', args);
 
     try {
-        console.log(chalk.cyan(`All React components compiled and saved into src/public/${wixReactComponentsFolderName}`));
+        console.log(chalk.cyan(`All React components compiled and saved into ${ts.compilerOptions.outDir}`));
     } catch (err) {
-        console.log(chalk.red(`Babel Error: ${err}`));
+        console.log(chalk.red(`TypeScript Error: ${err}`));
     }
 }
 
