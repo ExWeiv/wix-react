@@ -6,7 +6,7 @@ import ora from 'ora';
 import chalk from 'chalk';
 
 const builSpinner = ora({ text: `${prefixText} Compilers Running...\n`, color }).start();
-const sleep = new Promise((r) => setTimeout(r, 500));
+const sleep = (ms = 500) => new Promise((r) => setTimeout(r, ms));
 
 async function scss() {
     try {
