@@ -1,6 +1,6 @@
 # ExWeiv Wix-React Integration Setup
 
-Let us show you how you can use this repo as a starting point to integrate React.js into your Wix powered website (Wix Editor or Wix Studio) to work with React in Wix you will use `custom elements` and you will also need Git integration enabled so you can automatically integrate it or you can setup the same folders and copy paste same files/folders manually into Wix.
+Let us show you how you can use this repo as a starting point to integrate React into your Wix powered website (Wix Editor or Wix Studio) to work with React in Wix you will use `custom elements` and you will also need Git integration enabled so you can automatically integrate it or you can setup the same folders and copy paste same files/folders manually into Wix.
 
 #### Create a `React` folder in your root dir.
 
@@ -24,6 +24,8 @@ git clone git@github.com:ExWeiv/wix-react.git .
 npm i
 ```
 
+> This will also install packages for examples.
+
 #### You can create folders automatically by running:
 
 ```cli
@@ -35,6 +37,14 @@ npm run setup
 ```cli
 npm run build
 ```
+
+or
+
+```cli
+npm run build true
+```
+
+> Adding true to and will enable SCSS compiler.
 
 #### We are not finised yet, you must also install React and ReactDOM in you Wix site, go to root folder back and run these:
 
