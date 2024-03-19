@@ -7,7 +7,7 @@ import { prefixText, color } from './ora-config.js';
 
 async function installPackageNPM(packageName) {
     try {
-        const args = ['install', packageName];
+        const args = ['i', packageName];
         await execa('npm', args);
         return true;
     } catch (err) {
@@ -32,18 +32,19 @@ async function installNPMPackage() {
         // Package names starts from second
         const packagesToInstall = process.argv;
 
-        for (const [packageName, index] of packagesToInstall) {
-            if (index === 0 || index === 1) {
-                return null;
+        for (const [index, packageName] of packagesToInstall.entries()) {
+            if (index < 2) {
+                continue;
             } else {
-                spinner.text(`Installing: ${packageName} for NPM (React)`);
+                ora(spinner.text = `${prefixText} Installing: ${chalk.hex('#cb0202')(packageName)} for ${chalk.hex('#cb0202')('NPM')}`);
                 await installPackageNPM(packageName);
-                spinner.text(`Installing: ${packageName} for Wix`);
+                ora(spinner.text = `${prefixText} Installing: ${chalk.hex('#084EBD')(packageName)} for ${chalk.hex('#084EBD')('Wix')}`);
                 await installPackageWix(packageName);
+                console.log(chalk.greenBright(`\n✔ ${packageName} installed for both.`));
             }
         }
 
-        spinner.succeed('Package/s Installed!');
+        spinner.succeed('All Package/s Installed!');
     } catch (err) {
         console.log(chalk.red(`Package Installer Error: ${err}`));
     }
