@@ -160,8 +160,8 @@ WebGL Example:
 
 import React from "react";
 import ReactDOM from "react-dom";
-import WebGL from "../components/WebGLExample";
-import styles from "../css/files/webglexamplecss";
+import WebGL from "../components/WebGL";
+import styles from "../css/files/webglcss";
 import { setupForReact } from '@exweiv/wix-ce-helpers';
 
 const fonts = [`<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@900&display=swap" rel="stylesheet">`];
