@@ -6,6 +6,7 @@ import ora from 'ora';
 import chalk from 'chalk';
 
 const builSpinner = ora({ text: `${prefixText} Compilers Running...\n`, color }).start();
+const sleep = new Promise((r) => setTimeout(r, 500));
 
 async function scss() {
     try {
@@ -50,6 +51,7 @@ try {
     }
 
     await css();
+    await sleep();
     await react();
     builSpinner.succeed('All Components and Files Compiled!');
 } catch (err) {
