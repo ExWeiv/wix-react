@@ -8,7 +8,9 @@ async function compileReactComponents() {
         await execa('npx', args);
         console.log(chalk.cyan(`All React components compiled and saved into ${ts.compilerOptions.outDir}`));
     } catch (err) {
-        console.log(chalk.red(`TypeScript Error: ${err}`));
+        if (err.stderr) {
+            console.log(chalk.red(`TypeScript Error: ${err}`));
+        }
     }
 }
 

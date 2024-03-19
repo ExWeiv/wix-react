@@ -18,7 +18,7 @@ async function createFolderIfNotExists(folder) {
     try {
         const res = await fs.promises.stat(folder);
         if (res.isDirectory()) {
-            console.log(chalk.hex('#fcba03')(`${folder.slice(3)} folder already exists so skipping this`));
+            console.log(chalk.hex('#fcba03')(`\n${folder.slice(3)} folder already exists so skipping this`));
             return true;
         }
     } catch (err) {
