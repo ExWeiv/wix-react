@@ -3,9 +3,10 @@
 import { execa } from 'execa';
 import chalk from 'chalk';
 import ora from 'ora';
+import { prefixText, color } from './ora-config.js';
 import fs from 'fs';
 
-const spinner = ora({ text: 'Setting up ExWeiv Wix-React compilers and folders with pre-built examples...', color: 'magenta' }).start();
+const spinner = ora({ text: `${prefixText} Setting up ExWeiv Wix-React compilers and folders with pre-built examples...`, color }).start();
 
 const folders = [
     '../src/public/components',

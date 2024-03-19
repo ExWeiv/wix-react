@@ -3,6 +3,7 @@
 import { execa } from 'execa';
 import chalk from 'chalk';
 import ora from 'ora';
+import { prefixText, color } from './ora-config.js';
 
 async function installPackageNPM(packageName) {
     try {
@@ -26,7 +27,7 @@ async function installPackageWix(packageName) {
 
 async function installNPMPackage() {
     try {
-        const spinner = ora('Installing package/s...').start();
+        const spinner = ora({ text: `${prefixText} Installing package/s...`, color }).start();
 
         // Package names starts from second
         const packagesToInstall = process.argv;

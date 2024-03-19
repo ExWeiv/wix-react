@@ -6,7 +6,7 @@
   "scripts": {
     "setup": "node ./src/setup.js",
     "build": "node ./src/build.js",
-    "add": "node ./src/install.js"
+    "add": "node ./src/add.js"
   },
   "keywords": [
     "wix",
