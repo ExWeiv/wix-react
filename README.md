@@ -68,8 +68,6 @@ wix install react-dom
 wix install @exweiv/wix-ce-helpers
 ```
 
-> If you want to remove Git tracking features you can run `npm run rm-git` (only Windows). You can also delete hidden .git folder inside React folder.
-
 You will see new files inside of your `public` folder. And now next step is creating custom elements codes. Each time you want to create a new custom element you need to manually create a new `.js` file inside of your `src/public/custom-elements` (custom-elements) folder. Wix will be pulling any custom-element files from this dir.
 
 Here is an example custom element component that's using example components created from this repo. You can copy this code and paste it into a JS file and then you will be good to go for adding your custom element into desired page.
