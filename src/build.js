@@ -11,7 +11,6 @@ const sleep = new Promise((r) => setTimeout(r, 500));
 async function scss() {
     try {
         // Compile SCSS into CSS
-        ora(builSpinner.text = `${prefixText} SCSS Compiler Running...`);
         await scssCompiler();
         console.log(chalk.greenBright('\n✔ SCSS Files Compiled to CSS!'));
         return true;
@@ -23,7 +22,6 @@ async function scss() {
 async function css() {
     try {
         // Compile CSS into JS
-        ora(builSpinner.text = `${prefixText} CSS Compiler Running...`);
         await cssCompiler();
         console.log(chalk.greenBright('✔ CSS Files Compiled to JS!'));
         return true;
@@ -35,7 +33,6 @@ async function css() {
 async function react() {
     try {
         // Compile JSX and TSX into JS
-        ora(builSpinner.text = `${prefixText} React Compiler Running...`);
         await reactCompiler();
         console.log(chalk.greenBright('\n✔ React Components Compiled to JS!'));
         return true;
@@ -47,11 +44,15 @@ async function react() {
 try {
     let scssEnabled = process.argv[2];
     if (scssEnabled === "true") {
+        ora(builSpinner.text = `${prefixText} SCSS Compiler Running...`);
         await scss();
     }
 
+    ora(builSpinner.text = `${prefixText} CSS Compiler Running...`);
     await css();
     await sleep();
+
+    ora(builSpinner.text = `${prefixText} React Compiler Running...`);
     await react();
     builSpinner.succeed('All Components and Files Compiled!');
 } catch (err) {
