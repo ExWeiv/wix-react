@@ -92,7 +92,7 @@ Here is an example custom element component that's using example components crea
 // Custom Element Example
 
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import Counter from "../components/Counter";
 import styles from "../css/globalcss";
 import { setupForReact } from '@exweiv/wix-ce-helpers';
@@ -132,7 +132,8 @@ class CounterReactExample extends HTMLElement {
         // Create another HTML element to mount into div element + pass props as JS object
         const app = React.createElement(Counter, { ...JSON.parse(props), customElement: this });
         // Mount created app to div and render (after first mount it will only render changed elements)
-        ReactDOM.render(app, this.rootDiv);
+        const root = createRoot(this.rootDiv);
+        root.render(app);
     }
 }
 
@@ -159,7 +160,7 @@ WebGL Example:
 /// <reference lib="dom" />
 
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import WebGL from "../components/WebGL";
 import styles from "../css/files/webglcss";
 import { setupForReact } from '@exweiv/wix-ce-helpers';
@@ -177,7 +178,8 @@ class WebGLExample extends HTMLElement {
 
     render() {
         const app = React.createElement(WebGL, { customElement: this });
-        ReactDOM.render(app, this.rootDiv);
+        const root = createRoot(this.rootDiv);
+        root.render(app);
     }
 }
 

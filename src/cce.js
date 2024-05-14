@@ -7,7 +7,7 @@ const builSpinner = ora({ text: `${prefixText} Compilers Running...\n`, color })
 const ceTemplate = `/// <reference lib="dom" />
 
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import ReplaceMe from "../components/ReplaceMe";
 import styles from "../css/globalcss";
 import { setupForReact } from "@exweiv/wix-ce-helpers";
@@ -42,7 +42,8 @@ class CustomElement extends HTMLElement {
 
     render(props) {
         const app = React.createElement(ReplaceMe, { ...JSON.parse(props), customElement: this });
-        ReactDOM.render(app, this.rootDiv);
+        const root = createRoot(this.rootDiv);
+        root.render(app);
     }
 }
 

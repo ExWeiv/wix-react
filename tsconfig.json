@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
-        "target": "ES2020",
-        "module": "CommonJS",
+        "target": "ES2016",
+        "module": "ES2015",
         "jsx": "react",
         "outDir": "../src/public/components",
         "lib": [
-            "ES2020",
+            "ES2016",
             "DOM"
         ],
         "removeComments": true,
@@ -14,7 +14,8 @@
         "noUnusedParameters": true,
         "noImplicitReturns": true,
         "esModuleInterop": true,
-        "noEmitOnError": false
+        "noEmitOnError": false,
+        "moduleResolution": "Node"
     },
     "include": [
         "components/**/*"
