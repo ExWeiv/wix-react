@@ -188,6 +188,18 @@ When you use external components and libraries from NPM you should install these
 
 > Don't forget when installing for Wix use `wix install < package name >` when installing inside React folder (first navigate to that folder using `cd React`) use `npm install < package name >`.
 
+### Creating Custom Element Templates
+
+If you are tired of creating that basic template of custom elements you can run the following command in your terminal (in React dir):
+
+```cli
+npm run cce <file-name>
+```
+
+> .js is not required but will work.
+
+In this way you can create the starting point for your custom element easily directly inside your `custom-elements` folder.
+
 ---
 
 [Kolay Gelsin](https://medium.com/the-optimists-daily/kolay-gelsin-a-turkish-expression-we-should-all-know-and-use-83fc1207ae5d) 💜

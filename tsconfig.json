@@ -8,9 +8,6 @@
             "ES2020",
             "DOM"
         ],
-        "types": [
-            "react"
-        ],
         "removeComments": true,
         "strict": false,
         "noUnusedLocals": true,

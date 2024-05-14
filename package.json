@@ -1,11 +1,12 @@
 {
   "name": "@exweiv/wix-react",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "description": "Integrate React.js with your Wix powered website.",
   "main": "index.js",
   "scripts": {
     "setup": "node ./src/setup.js",
     "build": "node ./src/build.js",
+    "cce": "node ./src/cce.js",
     "add": "node ./src/add.js"
   },
   "keywords": [
@@ -35,19 +36,14 @@
   "contributors": [
     {
       "name": "Enes Bekar",
-      "url": "https://github.com/l0eix"
+      "url": "https://github.com/loeiks"
     }
   ],
   "engines": {
     "node": ">=18.17.1"
   },
   "dependencies": {
-    "@react-spring/three": "^9.7.3",
-    "@react-spring/web": "^9.7.3",
-    "@react-three/drei": "^9.102.6",
-    "@react-three/fiber": "^8.15.19",
-    "react": "^18.2.0",
-    "react-sparklines": "^1.7.0"
+    "react": "^18.3.1"
   },
   "type": "module",
   "devDependencies": {
