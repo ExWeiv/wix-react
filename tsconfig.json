@@ -17,6 +17,6 @@
         "noEmitOnError": false
     },
     "include": [
-        "Components/**/*"
+        "components/**/*"
     ]
 }
