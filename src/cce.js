@@ -8,8 +8,9 @@ const ceTemplate = `/// <reference lib="dom" />
 
 import React from "react";
 import ReactDOM from "react-dom";
+import ReplaceMe from "../components/ReplaceMe";
 import styles from "../css/globalcss";
-import { setupForReact } from '@exweiv/wix-ce-helpers';
+import { setupForReact } from "@exweiv/wix-ce-helpers";
 
 const fonts = [
     // Include Fonts Here (Font Links or <link> Tags Both Works)
@@ -40,7 +41,7 @@ class CustomElement extends HTMLElement {
     }
 
     render(props) {
-        const app = React.createElement(Counter, { ...JSON.parse(props), customElement: this });
+        const app = React.createElement(ReplaceMe, { ...JSON.parse(props), customElement: this });
         ReactDOM.render(app, this.rootDiv);
     }
 }
