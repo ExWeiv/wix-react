@@ -61,5 +61,5 @@ try {
     await fs.writeFile(`../src/public/custom-elements/${!fileName ? "exweiv-cce-template" : fileName}.js`, ceTemplate);
     builSpinner.succeed(`Custom Element Created at ../src/public/custom-elements/${fileName}.js`);
 } catch (err) {
-    console.log(chalk.red(`Error (Custom Element Creator): ${err}`));
+    console.log(chalk.red(`Error (Create Custom Element): ${err}`));
 }

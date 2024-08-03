@@ -1,6 +1,7 @@
 import cssCompiler from './css-compiler.js';
 import reactCompiler from './react-compiler.js';
 import scssCompiler from './scss-compiler.js';
+import tailwindCompiler from './tailwind-compiler.js';
 import { prefixText, color } from './ora-config.js';
 import ora from 'ora';
 import chalk from 'chalk';
@@ -16,6 +17,17 @@ async function scss() {
         return true;
     } catch (err) {
         console.log(chalk.red('SCSS Compiler Error: ', err));
+    }
+}
+
+async function tailwindcss() {
+    try {
+        // Compile SCSS into CSS
+        await tailwindCompiler();
+        console.log(chalk.greenBright('\n✔ Tailwind Compiled to CSS!'));
+        return true;
+    } catch (err) {
+        console.log(chalk.red('Tailwind Compiler Error: ', err));
     }
 }
 
@@ -42,10 +54,18 @@ async function react() {
 }
 
 try {
-    let scssEnabled = process.argv[2];
-    if (scssEnabled === "true") {
+    const flags = process.argv;
+    const compileSCSS = flags.includes("--scss");
+    const compileTailwind = flags.includes("--tailwind");
+
+    if (compileSCSS) {
         ora(builSpinner.text = `${prefixText} SCSS Compiler Running...`);
         await scss();
+    }
+
+    if (compileTailwind) {
+        ora(builSpinner.text = `${prefixText} Tailwind Compiler Running...`);
+        await tailwindcss();
     }
 
     ora(builSpinner.text = `${prefixText} CSS Compiler Running...`);

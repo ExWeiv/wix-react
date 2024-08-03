@@ -1,11 +1,11 @@
 {
     "compilerOptions": {
-        "target": "ES2016",
-        "module": "ES2015",
+        "target": "ES2020",
+        "module": "ES2020",
         "jsx": "react",
         "outDir": "../src/public/components",
         "lib": [
-            "ES2016",
+            "ES2020",
             "DOM"
         ],
         "removeComments": true,
