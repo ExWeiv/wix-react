@@ -1,1 +1,3 @@
-This is the folder where you will add shadcn/ui components manually by following the documentation of shadcn/ui.
+## shadcn/ui Components
+
+This is the folder where you add shadcn/ui components, helper function is already created in lib folder. But you will need to add required components you want to use by following the shadcn/ui documentation.

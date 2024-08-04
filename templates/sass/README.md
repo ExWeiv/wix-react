@@ -1,1 +1,3 @@
-This is the folder where you can create your SCSS files any file in this folder will be compiled to CSS with build command.
+## Your SCSS Files
+
+This is the place where you will write your SCSS code, any .scss file here will be compiled to CSS and placed in CSS folder.

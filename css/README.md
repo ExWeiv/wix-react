@@ -1,1 +1,3 @@
-This is the folder where you will find all converted and manually added CSS files, including Tailwind.
+## Your CSS Files
+
+Both your manual CSS files and compiled SCSS files will be here, including Tailwind CSS file. You can use all styles defined here in your custom elements code by using the helper library `@exweiv/wix-ce-helpers`.
