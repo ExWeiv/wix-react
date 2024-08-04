@@ -6,7 +6,7 @@ const exportedStyleType = ['expanded', 'compressed', 'nested'];
 
 async function compileSCSSFiles() {
     try {
-        const args = ['sass', '--style', exportedStyleType[1], '--no-source-map', 'SCSS:CSS'];
+        const args = ['sass', '--style', exportedStyleType[1], '--no-source-map', 'SASS:CSS'];
 
         await execa('npx', args);
     } catch (err) {

@@ -3,7 +3,7 @@
         "target": "ES2020",
         "module": "ES2020",
         "jsx": "react",
-        "outDir": "../src/public/components",
+        "outDir": "../src/public/react",
         "lib": [
             "ES2020",
             "DOM"
@@ -15,9 +15,7 @@
         "noImplicitReturns": true,
         "esModuleInterop": true,
         "noEmitOnError": false,
-        "moduleResolution": "Node"
-    },
-    "include": [
-        "components/**/*"
-    ]
+        "moduleResolution": "Node",
+        "baseUrl": "."
+    }
 }

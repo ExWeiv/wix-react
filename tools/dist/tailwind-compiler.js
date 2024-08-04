@@ -3,7 +3,7 @@ import chalk from 'chalk';
 
 async function compileTailwindCSS() {
     try {
-        const args = ['tailwindcss', '-o', './css/tailwind.css', '--minify'];
+        const args = ['tailwindcss', '-i', 'tailwind.css', '-o', './css/tailwind.css', '--minify'];
         await execa('npx', args);
     } catch (err) {
         if (err.stderr) {

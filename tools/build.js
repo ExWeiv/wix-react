@@ -1,8 +1,8 @@
-import cssCompiler from './css-compiler.js';
-import reactCompiler from './react-compiler.js';
-import scssCompiler from './scss-compiler.js';
-import tailwindCompiler from './tailwind-compiler.js';
-import { prefixText, color } from './ora-config.js';
+import cssCompiler from './dist/css-compiler.js';
+import reactCompiler from './dist/react-compiler.js';
+import scssCompiler from './dist/scss-compiler.js';
+import tailwindCompiler from './dist/tailwind-compiler.js';
+import { prefixText, color } from './dist/ora-config.js';
 import ora from 'ora';
 import chalk from 'chalk';
 
