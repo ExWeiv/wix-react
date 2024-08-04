@@ -55,8 +55,8 @@ async function react() {
 
 try {
     const flags = process.argv;
-    const compileSCSS = flags.includes("--scss");
-    const compileTailwind = flags.includes("--tailwind");
+    const compileSCSS = flags.includes("scss");
+    const compileTailwind = flags.includes("tailwind");
 
     if (compileSCSS) {
         ora(builSpinner.text = `${prefixText} SCSS Compiler Running...`);

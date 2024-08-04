@@ -1,12 +1,13 @@
 import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
+import { cwd } from 'process';
 
 // CSS folder path in React folder.
-const cssFolderPath = './css';
+const cssFolderPath = cwd().endsWith('react') ? './css' : './react/css';
 
 // Wix CSS folder name (only name path is ready)
-const wixCssFolderName = 'css';
+const wixCssFolderName = cwd().endsWith('react') ? '../src/public/css' : './src/public/css';
 
 let globalCSSContent = '';
 
@@ -23,7 +24,7 @@ async function generateCSSJS(cssContent, cssFileName) {
         const escapedContent = escapeCSS(cssContent);
         globalCSSContent = globalCSSContent + escapedContent + '\n';
         const jsContent = `const ${cssFileName} = \`<style>${escapedContent}</style>\`;\nexport default ${cssFileName};\n`;
-        await fs.writeFile(`../src/public/${wixCssFolderName}/files/${cssFileName.toLowerCase()}css.js`, jsContent, 'utf-8');
+        await fs.writeFile(`${wixCssFolderName}/files/${cssFileName.toLowerCase()}css.js`, jsContent, 'utf-8');
     } catch (err) {
         console.log(chalk.red(`Error (CSS Compiler): ${err}`));
     }
@@ -41,7 +42,7 @@ async function compileCssFiles() {
             }
         }
         const globalJsContent = `const globalcss = \`<style>${globalCSSContent}</style>\`;\nexport default globalcss;\n`;
-        await fs.writeFile(`../src/public/${wixCssFolderName}/globalcss.js`, globalJsContent, 'utf-8');
+        await fs.writeFile(`${wixCssFolderName}/globalcss.js`, globalJsContent, 'utf-8');
     } catch (err) {
         console.log(chalk.red(`Error (CSS Compiler): ${err}`));
     }

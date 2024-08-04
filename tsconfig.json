@@ -16,6 +16,10 @@
         "esModuleInterop": true,
         "noEmitOnError": false,
         "moduleResolution": "Node",
-        "baseUrl": "."
+        "baseUrl": ".",
+        "include": [
+            "./components/**/*",
+            "./shadcn/**/*"
+        ]
     }
 }

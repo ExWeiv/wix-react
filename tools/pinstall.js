@@ -3,7 +3,7 @@
 import { execa } from 'execa';
 import chalk from 'chalk';
 import ora from 'ora';
-import { prefixText, color } from './ora-config.js';
+import { prefixText, color } from './dist/ora-config.js';
 
 async function installPackageNPM(packageName) {
     try {
