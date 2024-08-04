@@ -1,0 +1,1 @@
+This is the folder where you will add shadcn/ui components manually by following the documentation of shadcn/ui.

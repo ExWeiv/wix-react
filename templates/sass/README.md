@@ -1,0 +1,1 @@
+This is the folder where you can create your SCSS files any file in this folder will be compiled to CSS with build command.

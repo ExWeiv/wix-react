@@ -1,0 +1,1 @@
+This is the folder where you will find all converted and manually added CSS files, including Tailwind.
