@@ -1,6 +1,6 @@
 {
   "name": "@exweiv/wix-react",
-  "version": "2.3.2",
+  "version": "2.3.3",
   "description": "Integrate React with your Wix powered website. With optional extra tools.",
   "scripts": {
     "setup": "node ./tools/setup.js",
