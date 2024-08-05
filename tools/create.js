@@ -92,8 +92,9 @@ program
             await fs.copy(...await getDirectories('tools'));
             await fs.copyFile(...await getDirectories('package.json'));
             await fs.copyFile(...await getDirectories('tsconfig.json'));
+
             await fs.writeJson(path.join(projectPath, 'wix-react.config.json'), config, { spaces: 2 });
-            await addScriptsToPackageJson(path.join(process.cwd() + '/tsconfig.json'), `../${targetFName}/public/${reactFName}`);
+            await modifyTSConfig(path.join(process.cwd() + '/tsconfig.json'), `../${targetFName}/public/${reactFName}`);
 
             // Install base dependencies
             await execa('npm', ['install'], { cwd: projectPath, stdio: 'inherit' });
