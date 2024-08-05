@@ -93,6 +93,7 @@ program
             await fs.copyFile(...await getDirectories('package.json'));
             await fs.copyFile(...await getDirectories('tsconfig.json'));
             await fs.writeJson(path.join(projectPath, 'wix-react.config.json'), config, { spaces: 2 });
+            await addScriptsToPackageJson(path.join(process.cwd() + '/tsconfig.json'), `../${targetFName}/public/${reactFName}`);
 
             // Install base dependencies
             await execa('npm', ['install'], { cwd: projectPath, stdio: 'inherit' });
@@ -183,6 +184,21 @@ async function addScriptsToPackageJson(packageJsonPath, newScripts) {
         return await fs.writeJson(packageJsonPath, packageJson, { spaces: 2 });
     } catch (error) {
         console.error(chalk.red('An error occurred while updating package.json:', error));
+    }
+}
+
+async function modifyTSConfig(tsConfigPath, newOutDir) {
+    try {
+        const currentConfig = await fs.readJson(tsConfigPath);
+
+        currentConfig.compilerOptions = {
+            ...currentConfig.compilerOptions,
+            outDir: newOutDir
+        };
+
+        return await fs.writeJson(tsConfigPath, currentConfig, { spaces: 2 });
+    } catch (error) {
+        console.error(chalk.red('An error occurred while updating tsconfig.json:', error));
     }
 }
 
