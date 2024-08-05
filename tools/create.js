@@ -50,12 +50,29 @@ program
                     name: 'addScripts',
                     message: 'Do you want to add required npm scripts directly into main package.json file to run build commands from the root dir?',
                     default: false,
-                }
+                },
+                {
+                    type: 'input',
+                    name: 'reactFName',
+                    message: 'Would you like to customize the React root folder name? (if not skip)',
+                    default: "react"
+                },
+                {
+                    type: 'input',
+                    name: 'targetFName',
+                    message: 'If your project target root folder name is not **src** you can set it now.',
+                    default: "src"
+                },
             ]);
 
             const buildSpinner = ora({ text: `${prefixText} Setting up React Integration...\n`, color }).start();
-            const { includeSCSS, includeShadcnUI, includeTailwind, installDependencies, addScripts } = answers;
+            const { includeSCSS, includeShadcnUI, includeTailwind, installDependencies, addScripts, reactFName, targetFName } = answers;
             const projectPath = path.join(process.cwd(), 'react');
+
+            const config = {
+                targetFolder: targetFName,
+                reactFolder: reactFName
+            }
 
             async function getDirectories(target, inTemplates = false) {
                 return [
@@ -75,6 +92,7 @@ program
             await fs.copy(...await getDirectories('tools'));
             await fs.copyFile(...await getDirectories('package.json'));
             await fs.copyFile(...await getDirectories('tsconfig.json'));
+            await fs.writeJson(...await getDirectories('wix-react.config.json'), config, { spaces: 2 });
 
             // Install base dependencies
             await execa('npm', ['install'], { cwd: projectPath, stdio: 'inherit' });

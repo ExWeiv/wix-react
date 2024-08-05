@@ -4,11 +4,13 @@ import { execa } from 'execa';
 import chalk from 'chalk';
 import ora from 'ora';
 import { prefixText, color } from './dist/ora-config.js';
+import { cwd } from 'process';
+import { reactFolder, targetFolder } from '../wix-react.config.json';
 
 async function installPackageNPM(packageName) {
     try {
         const args = ['i', packageName];
-        await execa('npm', args);
+        await execa('npm', args, { cwd: cwd().endsWith(reactFolder) ? cwd() : `./${reactFolder}` });
         return true;
     } catch (err) {
         console.log(chalk.red(`NPM Package Install Error: ${err}`));
@@ -18,7 +20,7 @@ async function installPackageNPM(packageName) {
 async function installPackageWix(packageName) {
     try {
         const args = ['install', packageName];
-        await execa('wix', args, { cwd: '../' });
+        await execa('wix', args, { cwd: cwd().endsWith(reactFolder) ? '../' : cwd() });
         return true;
     } catch (err) {
         console.log(chalk.red(`Wix Package Install Error: ${err}`));

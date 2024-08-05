@@ -2,12 +2,10 @@ import fs from 'fs-extra';
 import path from 'path';
 import chalk from 'chalk';
 import { cwd } from 'process';
+import { reactFolder, targetFolder } from '../../wix-react.config.json';
 
-// CSS folder path in React folder.
-const cssFolderPath = cwd().endsWith('react') ? './css' : './react/css';
-
-// Wix CSS folder name (only name path is ready)
-const wixCssFolderName = cwd().endsWith('react') ? '../src/public/css' : './src/public/css';
+const cssFolderPath = cwd().endsWith(reactFolder) ? './css' : `./${reactFolder}/css`;
+const wixCssFolderName = cwd().endsWith(reactFolder) ? `../${targetFolder}/public/css` : `./${targetFolder}/public/css`;
 
 let globalCSSContent = '';
 

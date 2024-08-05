@@ -5,14 +5,15 @@ import chalk from 'chalk';
 import ora from 'ora';
 import { prefixText, color } from './dist/ora-config.js';
 import fs from 'fs';
+import { targetFolder } from '../wix-react.config.json';
 
 const spinner = ora({ text: `${prefixText} Setting up ExWeiv Wix-React compilers and folders with pre-built examples...`, color }).start();
 
 const folders = [
-    '../src/public/react',
-    '../src/public/css',
-    '../src/public/css/files',
-    '../src/public/custom-elements'
+    `../${targetFolder}/public/react`,
+    `../${targetFolder}/public/css`,
+    `../${targetFolder}/public/css/files`,
+    `../${targetFolder}/public/custom-elements`
 ];
 
 async function createFolderIfNotExists(folder) {
