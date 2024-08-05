@@ -67,7 +67,7 @@ program
 
             const buildSpinner = ora({ text: `${prefixText} Setting up React Integration...\n`, color }).start();
             const { includeSCSS, includeShadcnUI, includeTailwind, installDependencies, addScripts, reactFName, targetFName } = answers;
-            const projectPath = path.join(process.cwd(), 'react');
+            const projectPath = path.join(process.cwd(), reactFName);
 
             const config = {
                 targetFolder: targetFName,
@@ -92,7 +92,7 @@ program
             await fs.copy(...await getDirectories('tools'));
             await fs.copyFile(...await getDirectories('package.json'));
             await fs.copyFile(...await getDirectories('tsconfig.json'));
-            await fs.writeJson(...await getDirectories('wix-react.config.json'), config, { spaces: 2 });
+            await fs.writeJson(path.join(projectPath, 'wix-react.config.json'), config, { spaces: 2 });
 
             // Install base dependencies
             await execa('npm', ['install'], { cwd: projectPath, stdio: 'inherit' });
@@ -131,8 +131,8 @@ program
             if (addScripts) {
                 buildSpinner.text = `${prefixText} Adding Scripts to Main package.json...`;
                 await addScriptsToPackageJson(path.join(process.cwd() + '/package.json'), {
-                    "build": "node ./react/tools/build.js",
-                    "pinstall": "node ./react/tools/pinstall.js"
+                    "build": `node ./${reactFName}/tools/build.js`,
+                    "pinstall": `node ./${reactFName}/tools/pinstall.js`
                 });
             }
 

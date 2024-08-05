@@ -1,7 +1,13 @@
 import { execa } from 'execa';
 import chalk from 'chalk';
 import { cwd } from 'process';
-import { reactFolder } from '../../wix-react.config.json';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import fsExtra from 'fs-extra';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const { reactFolder } = await fsExtra.readJson(path.join(__dirname, '../../wix-react.config.json'));
 
 // 0, 1, 2
 const exportedStyleType = ['expanded', 'compressed', 'nested'];

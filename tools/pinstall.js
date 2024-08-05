@@ -5,7 +5,14 @@ import chalk from 'chalk';
 import ora from 'ora';
 import { prefixText, color } from './dist/ora-config.js';
 import { cwd } from 'process';
-import { reactFolder, targetFolder } from '../wix-react.config.json';
+
+import { fileURLToPath } from 'url';
+import fsExtra from 'fs-extra';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const { reactFolder } = await fsExtra.readJson(path.join(__dirname, '../wix-react.config.json'));
 
 async function installPackageNPM(packageName) {
     try {

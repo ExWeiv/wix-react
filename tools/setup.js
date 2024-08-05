@@ -1,11 +1,18 @@
 #!/usr/src/env node
 
+import fs from 'fs';
 import { execa } from 'execa';
 import chalk from 'chalk';
 import ora from 'ora';
 import { prefixText, color } from './dist/ora-config.js';
-import fs from 'fs';
-import { targetFolder } from '../wix-react.config.json';
+
+import { fileURLToPath } from 'url';
+import fsExtra from 'fs-extra';
+import path from 'path';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const { targetFolder } = await fsExtra.readJson(path.join(__dirname, '../wix-react.config.json'));
 
 const spinner = ora({ text: `${prefixText} Setting up ExWeiv Wix-React compilers and folders with pre-built examples...`, color }).start();
 

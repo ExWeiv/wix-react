@@ -1,8 +1,13 @@
 import fs from 'fs-extra';
-import path from 'path';
 import chalk from 'chalk';
 import { cwd } from 'process';
-import { reactFolder, targetFolder } from '../../wix-react.config.json';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+const { reactFolder, targetFolder } = await fs.readJson(path.join(__dirname, '../../wix-react.config.json'));
+
 
 const cssFolderPath = cwd().endsWith(reactFolder) ? './css' : `./${reactFolder}/css`;
 const wixCssFolderName = cwd().endsWith(reactFolder) ? `../${targetFolder}/public/css` : `./${targetFolder}/public/css`;
