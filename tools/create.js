@@ -92,7 +92,9 @@ program
             await fs.copy(...await getDirectories('tools'));
             await fs.copyFile(...await getDirectories('package.json'));
             await fs.copyFile(...await getDirectories('tsconfig.json'));
+
             await fs.writeJson(path.join(projectPath, 'wix-react.config.json'), config, { spaces: 2 });
+            await modifyTSConfig(path.join(projectPath, 'tsconfig.json'), `../${targetFName}/public/${reactFName}`);
 
             // Install base dependencies
             await execa('npm', ['install'], { cwd: projectPath, stdio: 'inherit' });
@@ -126,7 +128,6 @@ program
             }
 
             buildSpinner.text = `${prefixText} Setting up Folders in Wix...`;
-            await modifyTSConfig(path.join(process.cwd() + '/tsconfig.json'), `../${targetFName}/public/${reactFName}`);
             await execa('npm', ['run', 'setup'], { cwd: projectPath, stdio: 'inherit' });
 
             if (addScripts) {
