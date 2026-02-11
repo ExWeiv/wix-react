@@ -1,6 +1,6 @@
 {
   "name": "@exweiv/wix-react",
-  "version": "2.3.4",
+  "version": "2.3.5",
   "description": "Integrate React with your Wix powered website. With optional extra tools.",
   "scripts": {
     "setup": "node ./tools/setup.js",
@@ -9,22 +9,12 @@
   },
   "bin": "./tools/create.js",
   "keywords": [
-    "wix studio",
     "wix react",
     "velo react",
     "velo",
-    "exweiv",
-    "wix",
-    "shadcn",
-    "scss",
-    "exweiv wix react",
-    "exweiv react"
+    "exweiv-studio"
   ],
-  "author": {
-    "name": "ExWeiv Apps Team",
-    "email": "info@apps.exweiv.com"
-  },
-  "license": "Apache-2.0",
+  "license": "MIT",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org"
@@ -33,16 +23,6 @@
     "url": "git@github.com:ExWeiv/wix-react.git",
     "type": "git"
   },
-  "bugs": {
-    "url": "https://github.com/ExWeiv/wix-react/issues",
-    "email": "info@apps.exweiv.com"
-  },
-  "contributors": [
-    {
-      "name": "Enes Bekar",
-      "url": "https://github.com/loeiks"
-    }
-  ],
   "engines": {
     "node": ">=18.17.1"
   },
